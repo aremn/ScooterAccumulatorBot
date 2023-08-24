@@ -3,12 +3,14 @@ import hashlib
 from telethon.sync import TelegramClient
 from telethon.errors import RPCError
 import time
-import os
-import json
 from database import setup_db, add_user, get_user, update_user_data
+
+setup_db()
+
 
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
+
 
 def register_new_user():
     username = input("Enter a new username: ")
@@ -16,6 +18,7 @@ def register_new_user():
     hashed_password = hash_password(password)
     add_user(username, hashed_password)
     print(f"User {username} registered!")
+
 
 def login():
     username = input("Enter your username: ")
@@ -37,6 +40,7 @@ def login():
     else:
         return user_data[1], user_data[3], user_data[4], user_data[5], user_data[6]
 
+
 def user_interaction():
     while True:
         print("1. Register")
@@ -56,16 +60,20 @@ def user_interaction():
         else:
             print("Invalid choice!")
 
+
 def human_delay():
     time.sleep(random.randint(5, 7))
+
 
 def get_accumulator_list():
     with open("list_of_accumulators.txt", "r") as file:
         return file.readlines()
 
+
 def save_accumulator_list(accumulators):
     with open("list_of_accumulators.txt", "w") as file:
         file.writelines(accumulators)
+
 
 def main():
     user_data = user_interaction()
@@ -116,7 +124,13 @@ def main():
                             if button.text == charge_value:
                                 response_message.click(data=button.data)
                                 break
-                time.sleep(0.5)
+
+                # Проверка на наличие слова "установлено" перед отправкой следующего аккумулятора
+                while True:
+                    time.sleep(0.5)
+                    confirmation_message = client.get_messages('ScooterAccumulatorBot', limit=1)[0]
+                    if "установлено" in confirmation_message.text:
+                        break
 
             except (RPCError, TimeoutError) as e:
                 print(f"Error with {acc_id.strip()}: {str(e)}")
@@ -125,6 +139,7 @@ def main():
 
     finally:
         client.disconnect()
+
 
 if __name__ == "__main__":
     try:

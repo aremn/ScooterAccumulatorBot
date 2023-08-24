@@ -1,29 +1,30 @@
-# Battery Charge Updater for Telegram
+# Battery Accumulator Script
 
-This script automates the task of updating the charge of batteries in a Telegram bot.
+Этот скрипт создан для автоматической работы с Telegram ботом, который управляет зарядом аккумуляторов.
 
-## Setup
+## Подготовка к работе
 
-1. Clone this repository.
-2. Install the requirements using `pip install -r requirements.txt`.
-3. Replace the placeholders in `Battery.py`:
-    - `YOUR_API_ID`: Obtain this from [Telegram's API Development Tools](https://my.telegram.org/auth).
-    - `YOUR_API_HASH`: Obtain this from [Telegram's API Development Tools](https://my.telegram.org/auth).
-    - `YOUR_PHONE_NUMBER`: Your phone number associated with your Telegram account in international format.
-    - `CHANNEL_1`, `CHANNEL_2`, etc.: Replace these with actual public channel usernames for warming up the session.
-4. Run the script using `python Battery.py`.
+1. **Получение API ID и API Hash**:
+   - Перейдите к [https://my.telegram.org/auth](https://my.telegram.org/auth) в режиме инкогнито.
+   - Зарегистрируйтесь и перейдите к разделу API development.
+   - Введите любое название и короткое название для вашего приложения.
+   - Обязательно выберите "DESKTOP" из списка.
+   - Нажмите "Сохранить".
+   - Сделайте скриншот или сохраните данные, но НИКОМУ не показывайте.
 
-## Usage
+2. **Подписка на каналы**:
+   - Подпишитесь на каналы: [topor](https://t.me/topor), [ru2ch](https://t.me/ru2ch), [bbcrussian](https://t.me/bbcrussian).
+   - Это необходимо для "прогрева" вашей сессии и обеспечения безопасности.
 
-1. When prompted, enter `CONFIRM` to start the script.
-2. The script will go through the list of accumulators and update their charge based on the specified criteria.
+3. **Использование скрипта**:
+   - При первом запуске вам потребуется ввести ваш `app_id` и `app_hash`.
+   - После ввода вы получите логин и пароль для дальнейшего использования скрипта. Обязательно сохраните их.
 
-## Possible Errors
+## Запуск
 
-- **Timeout or Long Delays**: Sometimes, the bot or Telegram servers might be slow to respond. The script is designed to handle such scenarios and will wait for a response. However, if the delay is too long, it might timeout.
-- **Invalid Accumulator ID**: If the bot responds with an error indicating an invalid accumulator ID, the script will skip that accumulator and move to the next one.
-- **Session Errors**: If there are issues with the session or if it becomes invalid, you might need to re-authenticate by entering the code sent to your Telegram account.
+1. Убедитесь, что у вас установлен Python и все необходимые библиотеки (см. `requirements.txt`).
+2. Запустите скрипт, следуя инструкциям на экране.
 
-## Note
+## Примечания
 
-Always ensure that you are not violating Telegram's Terms of Service when using automation scripts.
+Вводите все данные внимательно. Никогда не делитесь вашим `app_id`, `app_hash`, логином и паролем.
